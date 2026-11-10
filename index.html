@@ -112,6 +112,13 @@ a.zweit { display: block; text-align: center; text-decoration: none; }
 .w-text { font: 600 17px/1.35 var(--f-text); color: var(--schnee); animation: w-hoch .6s ease 1.2s both; }
 .w-knopf { width: min(320px, 80vw); opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .5s var(--ein); }
 #willkommen.bereit .w-knopf { opacity: 1; transform: none; }
+.w-kal { position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; width: min(340px, 86vw); animation: w-hoch .6s var(--ein) both; }
+.w-schritt { font: 700 14px/1 var(--f-label); letter-spacing: .2em; text-transform: uppercase; color: var(--rot-hell); }
+.w-titel { font: 800 clamp(48px, 15vw, 66px)/.9 var(--f-titel); text-transform: uppercase; }
+.w-p { margin: 0; font: 400 16px/1.45 var(--f-text); color: var(--leise); }
+.w-kal .knopf { width: 100%; box-sizing: border-box; }
+.w-weiter { background: none; border: 1px solid var(--linie); color: var(--schnee); font: 700 15px/1 var(--f-label); letter-spacing: .12em; text-transform: uppercase; padding: 13px 16px; border-radius: 12px; cursor: pointer; width: 100%; }
+.w-weiter:focus-visible { outline: 2px solid var(--rot-hell); outline-offset: 2px; }
 @keyframes w-pop { from { opacity: 0; transform: scale(.3) rotate(-160deg); } to { opacity: 1; transform: none; } }
 @keyframes w-hoch { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @keyframes w-wackel { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-6deg) scale(1.08); } 60% { transform: rotate(4deg) scale(1.04); } }
@@ -144,13 +151,21 @@ a.zweit { display: block; text-align: center; text-decoration: none; }
     <button class="knopf" id="los" type="button">Los geht's<small>mit Ton · ca. 5 Minuten</small></button>
     <button class="ohne" id="leise" type="button">ohne Ton ansehen</button>
     <div class="hinweis">Tippen: weiter · links tippen: zurück · gedrückt halten: Pause</div>
+    <div class="hinweis">🔒 Nur für unsere Runde, bitte nicht weiterleiten.</div>
   </section>
 
   <section id="willkommen" hidden aria-live="assertive">
     <canvas id="schnee" aria-hidden="true"></canvas>
-    <div class="w-inhalt">
+    <div class="w-kal" id="w-kal">
+      <div class="w-schritt">Schritt 1 von 2</div>
+      <div class="w-titel">Termine sichern</div>
+      <p class="w-p">Alle Programmpunkte mit Ort und Erinnerung in deinen Handy-Kalender. Dein Handy fragt kurz nach, dann geht's automatisch weiter.</p>
+      <a class="knopf" id="w-kal-los" href="media/skimeeting-2027.ics" target="_blank" rel="noopener">📅 In meinen Kalender</a>
+      <button class="w-weiter" id="w-kal-weiter" type="button">Ohne Kalender weiter</button>
+    </div>
+    <div class="w-inhalt" hidden>
       <img class="w-logo" src="media/logo.png" alt="Round Table 34">
-      <div class="w-klein">Skimeeting 2027 · Saalbach</div>
+      <div class="w-klein">Schritt 2 von 2 · Skimeeting 2027</div>
       <div class="w-gross">Du bist<br><span>dabei!</span></div>
       <div class="w-seil" aria-hidden="true">
         <svg viewBox="0 0 320 90" preserveAspectRatio="none">
@@ -247,9 +262,19 @@ a.zweit { display: block; text-align: center; text-decoration: none; }
 
   // ---------- Willkommens-Erlebnis ----------
   function willkommen(link) {
-    const w = $('#willkommen'), los = $('#w-los');
-    los.href = link; w.hidden = false; w.classList.remove('bereit');
+    const w = $('#willkommen'), kal = $('#w-kal'), inhalt = w.querySelector('.w-inhalt'), weiterKnopf = $('#w-kal-weiter');
+    $('#w-los').href = link; w.hidden = false; w.classList.remove('bereit');
     pause(true); app.classList.remove('pausiert');
+    kal.hidden = false; inhalt.hidden = true; weiterKnopf.textContent = 'Ohne Kalender weiter';
+    let weg = false, fertig = false;
+    const stufe2 = () => { if (fertig) return; fertig = true; document.removeEventListener('visibilitychange', sicht); kal.hidden = true; inhalt.hidden = false; feiern(link); };
+    const sicht = () => { if (document.hidden) weg = true; else if (weg) setTimeout(stufe2, 500); };
+    document.addEventListener('visibilitychange', sicht);
+    $('#w-kal-los').onclick = () => { setTimeout(() => { if (!fertig) weiterKnopf.textContent = 'Erledigt, weiter zur Community'; }, 1500); };
+    weiterKnopf.onclick = stufe2;
+  }
+  function feiern(link) {
+    const w = $('#willkommen');
     const ruhig = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!ruhig) schneeStarten($('#schnee'));
     setTimeout(() => w.classList.add('bereit'), ruhig ? 0 : 1600);
