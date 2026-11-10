@@ -1,0 +1,100 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//RT34 Grieskirchen//Skimeeting 2027//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Skimeeting 2027
+X-WR-TIMEZONE:Europe/Vienna
+BEGIN:VEVENT
+UID:skimeeting-2027@rt34-skimeeting-2027.github.io
+DTSTAMP:20261110T110342Z
+DTSTART:20270304T060000Z
+DTEND:20270306T110000Z
+SUMMARY:🎿 Skimeeting 2027
+LOCATION:Bachgut\, Hasenbachweg 144\, 5754 Hinterglemm
+DESCRIPTION:Abfahrt 7:00 in Grieskirchen\, schon in Skikleidung. Parken und
+  Kofferdepot am Bachgut-Chalet\, um 10:00 auf die Piste. Check-out Samstag
+  bis 10:00. Präsentation: https://rt34-skimeeting-2027.github.io/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🎿 Skimeeting 2027
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wieseralm-2027@rt34-skimeeting-2027.github.io
+DTSTAMP:20261110T110342Z
+DTSTART:20270304T120000Z
+DTEND:20270304T133000Z
+SUMMARY:🍽️ Mittag Wieseralm
+LOCATION:Wieseralm\, Reiterkogel\, 5754 Hinterglemm
+DESCRIPTION:Tisch für 12 reserviert\, à la carte. Bei Sonne auf der Terra
+ sse.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🍽️ Mittag Wieseralm
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:schwarzacher-2027@rt34-skimeeting-2027.github.io
+DTSTAMP:20261110T110342Z
+DTSTART:20270304T144500Z
+DTEND:20270304T170000Z
+SUMMARY:🍻 Après Der Schwarzacher
+LOCATION:Der Schwarzacher\, Schwarzacherweg 40\, 5754 Hinterglemm
+DESCRIPTION:Mit Ski über die 70a zur Talstation Reiterkogelbahn\, dann 6 b
+ is 8 Minuten zu Fuß über die Saalach.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🍻 Après Der Schwarzacher
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:jennerwein-2027@rt34-skimeeting-2027.github.io
+DTSTAMP:20261110T110342Z
+DTSTART:20270304T190000Z
+DTEND:20270304T213000Z
+SUMMARY:🥩 Abendessen Der Jennerwein
+LOCATION:Der Jennerwein\, Dorfstraße 205\, 5754 Hinterglemm
+DESCRIPTION:Ca. 400 m vom Chalet\, zu Fuß. Danach Bar im Jennerwein oder T
+ axi nach Saalbach.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🥩 Abendessen Der Jennerwein
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:montana-2027@rt34-skimeeting-2027.github.io
+DTSTAMP:20261110T110342Z
+DTSTART:20270305T123000Z
+DTEND:20270305T150000Z
+SUMMARY:🥂 Montana Royal · VIP-Terrasse
+LOCATION:Montana Royal Alpin Club\, Bergstation Kohlmaisbahn\, 5753 Saalbac
+ h
+DESCRIPTION:Mittagessen und Party auf der VIP-Terrasse. Danach über die WM
+ -Hänge ins Tal zu Burgi's.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🥂 Montana Royal · VIP-Terrasse
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wirtshaus-2027@rt34-skimeeting-2027.github.io
+DTSTAMP:20261110T110342Z
+DTSTART:20270305T190000Z
+DTEND:20270305T213000Z
+SUMMARY:🧀 Abendessen s'Wirtshaus
+LOCATION:Saalbacher Hof\, Dorfplatz 27\, 5753 Saalbach
+DESCRIPTION:Taxi ab Chalet ca. 19:40. Danach Party im Club Castello im selb
+ en Haus.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🧀 Abendessen s'Wirtshaus
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
