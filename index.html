@@ -236,6 +236,7 @@ a.zweit { display: block; text-align: center; text-decoration: none; }
       b.appendChild(nein);
       if (s.fuss) { const f = el('div', 'fuss'); s.fuss.forEach(t => f.appendChild(el('span', '', t))); b.appendChild(f); }
       const nochmal = el('button', 'zweit', 'Nochmal von vorne'); nochmal.type = 'button'; nochmal.addEventListener('click', () => zeigeStopp(0)); b.appendChild(nochmal);
+      const hg = el('a', 'zweit', '📱 Chat-Hintergrund fürs Handy'); hg.href = 'media/chat_hintergrund.jpg'; hg.target = '_blank'; hg.rel = 'noopener'; b.appendChild(hg);
       b.appendChild(el('div', 'nachweise', D.nachweise.join(' · ')));
       karte.appendChild(b);
       app.dataset.letzter = '';
