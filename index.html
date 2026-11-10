@@ -36,7 +36,8 @@ body { margin: 0; background: var(--tief); color: var(--schnee); font-family: va
 .rund svg { width: 18px; height: 18px; }
 .rund:focus-visible, .knopf:focus-visible, .zweit:focus-visible { outline: 2px solid var(--rot-hell); outline-offset: 2px; }
 
-.buehne { position: relative; width: min(100%, 54svh); aspect-ratio: 1; max-width: 100%; align-self: center; border-radius: 16px; overflow: hidden; background: var(--nacht); flex: none; }
+/* Buehne waechst mit der Bildschirmhoehe, laesst aber immer ca. 350 px fuer Kopf und Infokarte frei (kurze Handys, WhatsApp-Browser) */
+.buehne { position: relative; width: min(100%, 54svh, calc(100svh - 350px)); aspect-ratio: 1; max-width: 100%; align-self: center; border-radius: 16px; overflow: hidden; background: var(--nacht); flex: none; }
 .buehne video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s ease; }
 .buehne video.an { opacity: 1; }
 .fotoebene { position: absolute; inset: 0; opacity: 0; transition: opacity .5s ease; }
@@ -56,7 +57,7 @@ body { margin: 0; background: var(--tief); color: var(--schnee); font-family: va
 .pausezeichen span { font: 700 15px/1 var(--f-label); letter-spacing: .16em; text-transform: uppercase; background: rgba(7, 18, 26, .72); padding: 10px 14px; border-radius: 999px; }
 #app.pausiert .pausezeichen { opacity: 1; }
 
-#karte { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+#karte { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; }
 #karte > * { opacity: 0; transform: translateY(10px); }
 #karte.rein > * { opacity: 1; transform: none; transition: opacity .5s ease, transform .7s var(--ein); }
 #karte.rein > *:nth-child(2) { transition-delay: .07s; } #karte.rein > *:nth-child(3) { transition-delay: .14s; }
