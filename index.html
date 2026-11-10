@@ -237,7 +237,7 @@ a.zweit { display: block; text-align: center; text-decoration: none; }
       if (s.fuss) { const f = el('div', 'fuss'); s.fuss.forEach(t => f.appendChild(el('span', '', t))); b.appendChild(f); }
       const nochmal = el('button', 'zweit', 'Nochmal von vorne'); nochmal.type = 'button'; nochmal.addEventListener('click', () => zeigeStopp(0)); b.appendChild(nochmal);
       const kal = el('a', 'zweit', '📅 Alle Termine in den Kalender'); kal.href = 'media/skimeeting-2027.ics'; kal.target = '_blank'; kal.rel = 'noopener'; b.appendChild(kal);
-      const hg = el('a', 'zweit', '📱 Chat-Hintergründe'); hg.href = 'hintergruende.html'; b.appendChild(hg);
+      const hg = el('a', 'zweit', '📱 Chat-Hintergrund fürs Handy'); hg.href = 'hintergruende.html'; b.appendChild(hg);
       b.appendChild(el('div', 'nachweise', D.nachweise.join(' · ')));
       karte.appendChild(b);
       app.dataset.letzter = '';
