@@ -1,0 +1,421 @@
+<!doctype html><html lang=de><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=robots content="noindex,nofollow"><meta name=theme-color content="#07121a"><meta property="og:title" content="Skimeeting 2027 · Saalbach Hinterglemm"><meta property="og:description" content="4.–6. März 2027 · Round Table 34 Grieskirchen. Antippen und durchwischen."><meta property="og:type" content="website"><meta property="og:url" content="https://rt34-skimeeting-2027.github.io/"><meta property="og:image" content="https://rt34-skimeeting-2027.github.io/media/vorschau.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><link rel=icon href="media/logo.png"><style>:root{color-scheme:dark;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}body{margin:0}[hidden]{display:none!important}</style></head><body><title>Skimeeting 2027</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: eine Handy-Spalte wie eine Story – Fortschrittsbalken, Kopf, quadratische Kartenbühne, Infokarte darunter */
+@font-face { font-family: 'Big Shoulders Display'; font-weight: 800; font-display: swap; src: url(fonts/BigShouldersDisplay-800-latin.woff2) format('woff2'); }
+@font-face { font-family: 'Big Shoulders Text'; font-weight: 700; font-display: swap; src: url(fonts/BigShouldersText-700-latin.woff2) format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 400; font-display: swap; src: url(fonts/Figtree-400-latin.woff2) format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 600; font-display: swap; src: url(fonts/Figtree-600-latin.woff2) format('woff2'); }
+:root {
+  --tief: #07121a; --nacht: #0f2433; --karte: #10283a; --schnee: #f3f6f9; --leise: #a9bccb; --linie: rgba(243, 246, 249, .16);
+  --rot: #e92b2e; --rot-hell: #ff5a52; --rot-knopf: #c62828;
+  --f-titel: 'Big Shoulders Display', 'Arial Narrow', Impact, sans-serif;
+  --f-label: 'Big Shoulders Text', 'Arial Narrow', sans-serif;
+  --f-text: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ein: cubic-bezier(.16, 1, .3, 1);
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--tief); color: var(--schnee); font-family: var(--f-text); overflow: hidden; }
+#app {
+  position: relative; height: 100%; max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px;
+  padding-block: 10px 14px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; touch-action: manipulation;
+  background: radial-gradient(120% 70% at 50% 0%, #17344a 0%, var(--tief) 70%);
+}
+#balken { display: flex; gap: 4px; }
+#balken i { flex: 1; height: 3px; border-radius: 2px; background: var(--linie); overflow: hidden; }
+#balken b { display: block; height: 100%; width: 0; background: var(--schnee); }
+.kopf { display: flex; align-items: center; gap: 10px; min-height: 36px; }
+.kopf img { width: 28px; height: 28px; }
+.kopf .name { font: 700 15px/1 var(--f-label); letter-spacing: .14em; text-transform: uppercase; }
+.kopf .tag { font: 700 15px/1 var(--f-label); letter-spacing: .14em; text-transform: uppercase; color: var(--rot-hell); }
+.kopf .luft { flex: 1; }
+.rund { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--linie); background: rgba(7, 18, 26, .5); color: var(--schnee); display: grid; place-items: center; cursor: pointer; padding: 0; }
+.rund svg { width: 18px; height: 18px; }
+.rund:focus-visible, .knopf:focus-visible, .zweit:focus-visible { outline: 2px solid var(--rot-hell); outline-offset: 2px; }
+
+.buehne { position: relative; width: min(100%, 54svh); aspect-ratio: 1; max-width: 100%; align-self: center; border-radius: 16px; overflow: hidden; background: var(--nacht); flex: none; }
+.buehne video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s ease; }
+.buehne video.an { opacity: 1; }
+.fotoebene { position: absolute; inset: 0; opacity: 0; transition: opacity .5s ease; }
+#app[data-phase="fotos"] .fotoebene { opacity: 1; }
+.foto { position: absolute; inset: 0; background-size: cover; opacity: 0; transition: opacity .8s ease; }
+.foto.an { opacity: 1; animation: kb 4.8s ease-out forwards; }
+@keyframes kb { from { transform: scale(1.03); } to { transform: scale(1.11); } }
+#app.pausiert .foto.an { animation-play-state: paused; }
+.fotoebene::after { content: ''; position: absolute; inset: auto 0 0; height: 42%; background: linear-gradient(transparent, rgba(7, 18, 26, .88)); pointer-events: none; }
+.ort { position: absolute; left: 14px; top: 12px; z-index: 2; font: 800 24px/1 var(--f-titel); text-transform: uppercase; letter-spacing: .02em; padding-bottom: 5px; border-bottom: 3px solid var(--rot); text-shadow: 0 2px 10px rgba(0, 0, 0, .55); }
+.unten { position: absolute; left: 14px; right: 14px; bottom: 26px; z-index: 2; display: flex; align-items: flex-end; gap: 10px; }
+.unten .ft { flex: 1; min-width: 0; font: 600 16px/1.25 var(--f-text); }
+.unten .fz { font: 700 15px/1 var(--f-label); letter-spacing: .1em; color: var(--leise); font-variant-numeric: tabular-nums; }
+.nachweis { position: absolute; left: 14px; right: 14px; bottom: 8px; z-index: 2; font: 400 11px/1.2 var(--f-text); color: rgba(243, 246, 249, .85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 1px 4px rgba(0, 0, 0, .7); }
+.ort { max-width: calc(100% - 28px); }
+.pausezeichen { position: absolute; inset: 0; display: grid; place-items: center; z-index: 3; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.pausezeichen span { font: 700 15px/1 var(--f-label); letter-spacing: .16em; text-transform: uppercase; background: rgba(7, 18, 26, .72); padding: 10px 14px; border-radius: 999px; }
+#app.pausiert .pausezeichen { opacity: 1; }
+
+#karte { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+#karte > * { opacity: 0; transform: translateY(10px); }
+#karte.rein > * { opacity: 1; transform: none; transition: opacity .5s ease, transform .7s var(--ein); }
+#karte.rein > *:nth-child(2) { transition-delay: .07s; } #karte.rein > *:nth-child(3) { transition-delay: .14s; }
+#karte.rein > *:nth-child(4) { transition-delay: .21s; } #karte.rein > *:nth-child(5) { transition-delay: .28s; }
+.kicker { display: flex; align-items: center; gap: 8px; font: 700 14px/1.1 var(--f-label); letter-spacing: .14em; text-transform: uppercase; color: var(--leise); }
+.kicker::before { content: ''; width: 22px; height: 3px; background: var(--rot); border-radius: 2px; flex: none; }
+#karte h2 { margin: 0; font: 800 clamp(30px, 9.5vw, 46px)/.95 var(--f-titel); text-transform: uppercase; letter-spacing: .01em; text-wrap: balance; }
+#karte ul { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+#karte li { position: relative; padding-left: 18px; font: 400 17px/1.35 var(--f-text); }
+#karte li::before { content: ''; position: absolute; left: 0; top: .5em; width: 7px; height: 7px; border-radius: 50%; background: var(--rot); }
+.zahlen { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 4px; }
+.zahlen div { background: var(--karte); border: 1px solid var(--linie); border-radius: 12px; padding: 9px 12px; display: flex; flex-direction: column; gap: 2px; }
+.zahlen b { font: 800 34px/1 var(--f-titel); font-variant-numeric: tabular-nums; }
+.zahlen span { font: 700 13px/1.1 var(--f-label); letter-spacing: .12em; text-transform: uppercase; color: var(--leise); }
+.fuss { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 600 14px/1.3 var(--f-text); color: var(--leise); }
+.dabei { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.knopf { display: block; text-align: center; text-decoration: none; background: var(--rot-knopf); color: #fff; font: 800 26px/1 var(--f-titel); text-transform: uppercase; letter-spacing: .03em; padding: 15px 16px; border-radius: 12px; }
+.knopf small { display: block; margin-top: 6px; font: 400 13px/1.2 var(--f-text); text-transform: none; letter-spacing: 0; color: #fff; }
+a.zweit { display: block; text-align: center; text-decoration: none; }
+.zweit { background: none; border: 1px solid var(--linie); color: var(--schnee); font: 700 15px/1 var(--f-label); letter-spacing: .12em; text-transform: uppercase; padding: 11px 14px; border-radius: 12px; cursor: pointer; }
+.nachweise { font: 400 11px/1.4 var(--f-text); color: var(--leise); }
+#app[data-letzter] .buehne { width: min(100%, 30svh); }
+#app[data-letzter] .zahlen { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+#app[data-letzter] .zahlen div { padding: 7px 8px; }
+#app[data-letzter] .zahlen b { font-size: clamp(18px, 5.4vw, 22px); white-space: nowrap; }
+#app[data-letzter] .zahlen span { font-size: 11px; letter-spacing: .06em; }
+#app[data-letzter] #karte { overflow-y: auto; }
+
+#start { position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px;
+  padding-block: 24px max(28px, env(safe-area-inset-bottom, 0px)); padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px));
+  background: linear-gradient(180deg, rgba(7, 18, 26, .25) 0%, rgba(7, 18, 26, .7) 45%, var(--tief) 78%), url(media/S01.jpg) center 20% / cover no-repeat, var(--tief); }
+#start .logo { width: 92px; height: 92px; filter: drop-shadow(0 10px 24px rgba(0, 0, 0, .5)); }
+#start .klein { font: 700 15px/1.1 var(--f-label); letter-spacing: .16em; text-transform: uppercase; color: var(--leise); }
+#start h1 { margin: 0; font: 800 clamp(58px, 18vw, 86px)/.88 var(--f-titel); text-transform: uppercase; }
+#start h1 span { color: var(--rot); display: block; }
+#start .ortzeile { font: 600 18px/1.3 var(--f-text); }
+#start .hinweis { font: 400 13px/1.4 var(--f-text); color: var(--leise); }
+#start .knopf { border: 0; cursor: pointer; width: 100%; }
+#start .ohne { background: none; border: 0; color: var(--leise); font: 600 14px/1 var(--f-text); text-decoration: underline; cursor: pointer; padding: 6px; align-self: center; }
+/* Willkommens-Erlebnis nach "Ich bin dabei": Schnee, Logo, Gondel, dann WhatsApp */
+#willkommen { position: absolute; inset: 0; z-index: 30; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px));
+  background: radial-gradient(120% 80% at 50% 30%, #1d4563 0%, var(--nacht) 45%, var(--tief) 100%); }
+#schnee { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.w-inhalt { position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.w-logo { width: 120px; height: 120px; filter: drop-shadow(0 14px 30px rgba(0, 0, 0, .55)); animation: w-pop 1s var(--ein) both; }
+.w-klein { font: 700 15px/1 var(--f-label); letter-spacing: .18em; text-transform: uppercase; color: var(--leise); animation: w-hoch .7s var(--ein) .35s both; }
+.w-gross { font: 800 clamp(62px, 19vw, 92px)/.86 var(--f-titel); text-transform: uppercase; animation: w-hoch .8s var(--ein) .5s both; }
+.w-gross span { color: var(--rot); display: inline-block; animation: w-wackel 1.2s ease-in-out 1.1s both; }
+.w-seil { position: relative; width: min(320px, 80vw); height: 90px; animation: w-hoch .6s ease .8s both; }
+.w-seil svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.w-gondel { animation: w-fahrt 2.6s cubic-bezier(.45, 0, .2, 1) 1s both; }
+.w-text { font: 600 17px/1.35 var(--f-text); color: var(--schnee); animation: w-hoch .6s ease 1.2s both; }
+.w-knopf { width: min(320px, 80vw); opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .5s var(--ein); }
+#willkommen.bereit .w-knopf { opacity: 1; transform: none; }
+@keyframes w-pop { from { opacity: 0; transform: scale(.3) rotate(-160deg); } to { opacity: 1; transform: none; } }
+@keyframes w-hoch { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes w-wackel { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-6deg) scale(1.08); } 60% { transform: rotate(4deg) scale(1.04); } }
+@keyframes w-fahrt { from { transform: translate(0, 0); } to { transform: translate(250px, -55px); } }
+@media (prefers-reduced-motion: reduce) { .w-logo, .w-klein, .w-gross, .w-gross span, .w-seil, .w-gondel, .w-text { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .foto.an { animation: none; } #karte > *, #karte.rein > * { transition: none; transform: none; } .buehne video, .foto, .fotoebene { transition: none; } }
+</style>
+
+<div id="app" data-phase="start">
+  <div id="balken" aria-hidden="true"></div>
+  <div class="kopf">
+    <img src="media/logo.png" alt="Round Table 34">
+    <span class="name">Skimeeting 2027</span>
+    <span class="tag" id="tag"></span>
+    <span class="luft"></span>
+    <button class="rund" id="ton" type="button" aria-label="Ton aus" aria-pressed="true"></button>
+  </div>
+  <div class="buehne" id="buehne">
+    <div class="flugebene"></div>
+    <div class="fotoebene"><div class="ort" id="ort"></div><div class="nachweis" id="nachweis"></div><div class="unten"><span class="ft" id="fototitel"></span><span class="fz" id="fotozahl"></span></div></div>
+    <div class="pausezeichen"><span>Pause</span></div>
+  </div>
+  <section id="karte" aria-live="polite"></section>
+
+  <section id="start">
+    <img class="logo" src="media/logo.png" alt="Round Table 34">
+    <div class="klein">Round Table 34 Grieskirchen</div>
+    <h1>Skimeeting <span>2027</span></h1>
+    <div class="ortzeile">Saalbach Hinterglemm · 4.–6. März 2027</div>
+    <button class="knopf" id="los" type="button">Los geht's<small>mit Ton · ca. 5 Minuten</small></button>
+    <button class="ohne" id="leise" type="button">ohne Ton ansehen</button>
+    <div class="hinweis">Tippen: weiter · links tippen: zurück · gedrückt halten: Pause</div>
+  </section>
+
+  <section id="willkommen" hidden aria-live="assertive">
+    <canvas id="schnee" aria-hidden="true"></canvas>
+    <div class="w-inhalt">
+      <img class="w-logo" src="media/logo.png" alt="Round Table 34">
+      <div class="w-klein">Skimeeting 2027 · Saalbach</div>
+      <div class="w-gross">Du bist<br><span>dabei!</span></div>
+      <div class="w-seil" aria-hidden="true">
+        <svg viewBox="0 0 320 90" preserveAspectRatio="none">
+          <line x1="0" y1="78" x2="320" y2="8" stroke="#a9bccb" stroke-width="2"/>
+          <g class="w-gondel">
+            <line x1="35" y1="70" x2="35" y2="80" stroke="#a9bccb" stroke-width="2"/>
+            <rect x="20" y="78" width="30" height="24" rx="6" fill="#e92b2e"/>
+            <rect x="25" y="82" width="9" height="8" rx="2" fill="#f3f6f9"/>
+            <rect x="37" y="82" width="9" height="8" rx="2" fill="#f3f6f9"/>
+          </g>
+        </svg>
+      </div>
+      <div class="w-text">Gleich geht's in die Skimeeting-Community …</div>
+      <a class="knopf w-knopf" id="w-los" target="_blank" rel="noopener">Zur Community</a>
+    </div>
+  </section>
+</div>
+<audio id="musik" src="media/musik.mp3" loop preload="none"></audio>
+
+<script id="daten" type="application/json">{"stopps":[{"id":"S01","art":"zahlen","tag":"","kicker":"Saalbach Hinterglemm · 4.–6. März 2027","titel":"Zwei Skitage im Skicircus","punkte":[],"zahlen":[["2","Skitage"],["ca. 37","km Piste"],["ca. 8.800","Höhenmeter"],["18","Liftfahrten"]],"fuss":null,"fotos":[],"video":"media/S01.mp4","poster":"media/S01.jpg","dauer":12},{"id":"S02","art":"karte","tag":"do","kicker":"Donnerstag · 4. März","titel":"Anreise","punkte":["Start in Grieskirchen, schon in Skikleidung","Parken und Kofferdepot am Chalet"],"zahlen":null,"fuss":null,"fotos":[],"video":"media/S02.mp4","poster":"media/S02.jpg","dauer":20},{"id":"S03","art":"karte","tag":"do","kicker":"Unsere Unterkunft","titel":"Bachgut Jagdhaus-Chalet","punkte":["Eigenes Chalet · 240 m² · 5 Schlafzimmer","Zirbensauna und Whirlwanne auf der Terrasse","Badehaus mit Infinity-Pool","Ski-in / Ski-out · Gratis-Shuttle"],"zahlen":null,"fuss":null,"fotos":[{"datei":"media/fotos/bachgut_01.jpg","ort":"Bachgut Jagdhaus-Chalet","titel":"Das Jagdhaus-Chalet","nachweis":"Foto: Bachgut (bachgut.at)","fokus":[0.55,0.35]},{"datei":"media/fotos/bachgut_02.jpg","ort":"Bachgut Jagdhaus-Chalet","titel":"Wohnzimmer mit Kamin","nachweis":"Foto: Bachgut (bachgut.at)","fokus":[0.25,0.55]},{"datei":"media/fotos/bachgut_03.jpg","ort":"Bachgut Jagdhaus-Chalet","titel":"Zirbensauna","nachweis":"Foto: Bachgut (bachgut.at)","fokus":[0.6,0.5]},{"datei":"media/fotos/bachgut_06.jpg","ort":"Bachgut Jagdhaus-Chalet","titel":"Whirlwanne im Freien","nachweis":"","fokus":[0.5,0.5]},{"datei":"media/fotos/bachgut_05.jpg","ort":"Bachgut Jagdhaus-Chalet","titel":"Badehaus: Infinity-Pool über dem Tal","nachweis":"Foto: Bachgut (bachgut.at)","fokus":[0.45,0.65]},{"datei":"media/fotos/bachgut_07.jpg","ort":"Bachgut Jagdhaus-Chalet","titel":"Badehaus am Abend","nachweis":"","fokus":[0.5,0.5]}],"video":"media/S03.mp4","poster":"media/S03.jpg","dauer":6},{"id":"S05","art":"karte","tag":"do","kicker":"Donnerstag","titel":"Zwölferkogel und Weltcupstrecke","punkte":["12er NORD auf 1.985 m","36 Weltcupstrecke: schwarz und steil","Stehachterl Genuss hoch 12"],"zahlen":null,"fuss":null,"fotos":[{"datei":"media/fotos/genuss12_01.jpg","ort":"Genuss hoch 12","titel":"Winterterrasse an der Mittelstation","nachweis":"Foto: Genuss hoch 12 (genusshoch12.com)","fokus":[0.4,0.6]},{"datei":"media/fotos/genuss12_02.jpg","ort":"Genuss hoch 12","titel":"Die Hütte an der 12er-KOGEL-Bahn","nachweis":"Foto: Genuss hoch 12 (genusshoch12.com)","fokus":[0.5,0.5]},{"datei":"media/fotos/genuss12_03.jpg","ort":"Genuss hoch 12","titel":"Aus der Küche","nachweis":"Foto: Genuss hoch 12 (genusshoch12.com)","fokus":[0.5,0.55]}],"video":"media/S05.mp4","poster":"media/S05.jpg","dauer":27.5},{"id":"S06","art":"karte","tag":"do","kicker":"Donnerstag","titel":"Mittag Wieseralm","punkte":["40 Nordabfahrt: 3 km, 885 Hm","Sonnenterrasse und Almklassiker"],"zahlen":null,"fuss":null,"fotos":[{"datei":"media/fotos/wieseralm_01.jpg","ort":"Wieseralm","titel":"Die Wieseralm im Winter","nachweis":"Foto: Wiesergut/Wieseralm (wiesergut.com)","fokus":[0.45,0.5]},{"datei":"media/fotos/wieseralm_02.jpg","ort":"Wieseralm","titel":"Sonnenterrasse","nachweis":"Foto: Wiesergut/Wieseralm (wiesergut.com)","fokus":[0.6,0.5]},{"datei":"media/fotos/wieseralm_04.jpg","ort":"Wieseralm","titel":"Terrasse an der Hütte","nachweis":"Foto: Wiesergut/Wieseralm (wiesergut.com)","fokus":[0.55,0.4]},{"datei":"media/fotos/wieseralm_03.jpg","ort":"Wieseralm","titel":"Gaststube","nachweis":"Foto: Wiesergut/Wieseralm (wiesergut.com)","fokus":[0.5,0.55]}],"video":"media/S06.mp4","poster":"media/S06.jpg","dauer":19.5},{"id":"S08","art":"karte","tag":"do","kicker":"Donnerstag","titel":"Après Der Schwarzacher","punkte":["Letzte Abfahrt 70a","Tisch für 12 reserviert"],"zahlen":null,"fuss":null,"fotos":[{"datei":"media/fotos/schwarzacher_02.jpg","ort":"Der Schwarzacher","titel":"Der Schwarzacher an der Piste","nachweis":"Foto: Der Schwarzacher (der-schwarzacher.at)","fokus":[0.5,0.45]},{"datei":"media/fotos/schwarzacher_01.jpg","ort":"Der Schwarzacher","titel":"Après-Terrasse","nachweis":"Foto: Der Schwarzacher (der-schwarzacher.at)","fokus":[0.5,0.4]},{"datei":"media/fotos/schwarzacher_04.jpg","ort":"Der Schwarzacher","titel":"Feuerstelle und Lounge","nachweis":"Foto: Der Schwarzacher (der-schwarzacher.at)","fokus":[0.45,0.55]},{"datei":"media/fotos/schwarzacher_03.jpg","ort":"Der Schwarzacher","titel":"Am Abend","nachweis":"Foto: Der Schwarzacher (der-schwarzacher.at)","fokus":[0.55,0.55]}],"video":"media/S08.mp4","poster":"media/S08.jpg","dauer":18},{"id":"S09","art":"karte","tag":"do","kicker":"Donnerstag","titel":"Abendessen Der Jennerwein","punkte":["Vorher Sauna und Whirlwanne","400 m vom Chalet"],"zahlen":null,"fuss":null,"fotos":[{"datei":"media/fotos/jennerwein_01.jpg","ort":"Der Jennerwein","titel":"Der Jennerwein in Hinterglemm","nachweis":"Foto: Der Jennerwein (der-jennerwein.at)","fokus":[0.5,0.5]},{"datei":"media/fotos/jennerwein_04.jpg","ort":"Der Jennerwein","titel":"Vom Grill","nachweis":"Foto: Der Jennerwein (der-jennerwein.at)","fokus":[0.7,0.4]},{"datei":"media/fotos/jennerwein_03.jpg","ort":"Der Jennerwein","titel":"Aus der Küche","nachweis":"Foto: Der Jennerwein (der-jennerwein.at)","fokus":[0.6,0.45]},{"datei":"media/fotos/jennerwein_02.jpg","ort":"Der Jennerwein","titel":"An der Bar","nachweis":"Foto: Der Jennerwein (der-jennerwein.at)","fokus":[0.5,0.5]}],"video":"media/S09.mp4","poster":"media/S09.jpg","dauer":8},{"id":"S11","art":"karte","tag":"fr","kicker":"Freitag · 5. März","titel":"Stehachterl Westgipfelhütte","punkte":["Schattberg X-press auf 2.018 m","Dachterrasse an der Bergstation"],"zahlen":null,"fuss":null,"fotos":[{"datei":"media/fotos/westgipfel_01.jpg","ort":"Westgipfelhütte","titel":"Die Westgipfelhütte im Winter","nachweis":"Foto: Saalbach Hinterglemm Tourismus (saalbach.com)","fokus":[0.5,0.55]},{"datei":"media/fotos/westgipfel_05.jpg","ort":"Westgipfelhütte","titel":"Blick vom Westgipfel","nachweis":"Foto: Westgipfelhütte (westgipfelhuette.com)","fokus":[0.5,0.4]},{"datei":"media/fotos/westgipfel_02.jpg","ort":"Westgipfelhütte","titel":"Dachterrasse","nachweis":"Foto: Westgipfelhütte (westgipfelhuette.com)","fokus":[0.4,0.5]}],"video":"media/S11.mp4","poster":"media/S11.jpg","dauer":25.5},{"id":"S12","art":"karte","tag":"fr","kicker":"Freitag","titel":"Montana Royal Alpin Club","punkte":["Schattberg Nord, schwarz","Kohlmaisbahn hinauf","VIP-Terrasse: Mittag und Party"],"zahlen":null,"fuss":null,"fotos":[{"datei":"media/fotos/montana_01.jpg","ort":"Montana Royal Alpin Club","titel":"Sonnenterrasse mit Bar","nachweis":"Foto: Montana Royal (montana-royal.at)","fokus":[0.55,0.5]},{"datei":"media/fotos/montana_05.jpg","ort":"Montana Royal Alpin Club","titel":"Terrasse an der Bergstation Kohlmais","nachweis":"Foto: Montana Royal (montana-royal.at)","fokus":[0.5,0.55]},{"datei":"media/fotos/montana_03.jpg","ort":"Montana Royal Alpin Club","titel":"Sky Lounge","nachweis":"Foto: Montana Royal (montana-royal.at)","fokus":[0.5,0.5]},{"datei":"media/fotos/montana_02.jpg","ort":"Montana Royal Alpin Club","titel":"Ausblick von der Terrasse","nachweis":"Foto: Montana Royal (montana-royal.at)","fokus":[0.5,0.5]}],"video":"media/S12.mp4","poster":"media/S12.jpg","dauer":19.5},{"id":"S13","art":"karte","tag":"fr","kicker":"Freitag","titel":"Burgi's und Abend in Saalbach","punkte":["WM-Hänge von 1991 hinunter","Après Burgi's","s'Wirtshaus, danach Club Castello"],"zahlen":null,"fuss":null,"fotos":[{"datei":"media/fotos/burgis_01.jpg","ort":"Burgi's","titel":"Burgi's an der Talstation","nachweis":"Foto: Saalbach Hinterglemm Tourismus (saalbach.com)","fokus":[0.4,0.5]},{"datei":"media/fotos/saalbacher_hof_03.jpg","ort":"s'Wirtshaus","titel":"Saalbacher Hof am Dorfplatz","nachweis":"Foto: Saalbacher Hof (saalbacherhof.at)","fokus":[0.55,0.5]},{"datei":"media/fotos/saalbacher_hof_06.jpg","ort":"s'Wirtshaus","titel":"Abendessen im s'Wirtshaus","nachweis":"Foto: Saalbacher Hof (saalbacherhof.at)","fokus":[0.5,0.5]},{"datei":"media/fotos/saalbacher_hof_07.jpg","ort":"s'Wirtshaus","titel":"Käsefondue","nachweis":"Foto: Saalbacher Hof (saalbacherhof.at)","fokus":[0.5,0.55]},{"datei":"media/fotos/saalbacher_hof_01.jpg","ort":"s'Wirtshaus","titel":"Gewölbe-Gaststube","nachweis":"Foto: Saalbacher Hof (saalbacherhof.at)","fokus":[0.35,0.55]},{"datei":"media/fotos/saalbacher_hof_08.jpg","ort":"Club Castello","titel":"Live-Musik im Club Castello","nachweis":"Foto: Saalbacher Hof (saalbacherhof.at)","fokus":[0.5,0.35]},{"datei":"media/fotos/saalbacher_hof_05.jpg","ort":"Club Castello","titel":"Bar im Club Castello","nachweis":"Foto: Saalbacher Hof (saalbacherhof.at)","fokus":[0.55,0.5]}],"video":"media/S13.mp4","poster":"media/S13.jpg","dauer":6},{"id":"S14","art":"karte","tag":"sa","kicker":"Samstag · 6. März","titel":"Ausklang","punkte":["Check-out, dann Badehaus","Heimfahrt individuell"],"zahlen":null,"fuss":null,"fotos":[{"datei":"media/fotos/bachgut_05.jpg","ort":"Bachgut Badehaus","titel":"Infinity-Pool im Badehaus","nachweis":"Foto: Bachgut (bachgut.at)","fokus":[0.45,0.65]},{"datei":"media/fotos/bachgut_08.jpg","ort":"Bachgut Badehaus","titel":"Badehaus im Schnee","nachweis":"","fokus":[0.5,0.5]},{"datei":"media/fotos/bachgut_07.jpg","ort":"Bachgut Badehaus","titel":"Badehaus am Abend","nachweis":"","fokus":[0.5,0.5]}],"video":"media/S14.mp4","poster":"media/S14.jpg","dauer":6},{"id":"S15","art":"zahlen","tag":"","kicker":"Skimeeting 2027 · 4.–6. März","titel":"Bist du dabei?","punkte":[],"zahlen":[["2","Skitage"],["ca. 37","km Piste"],["ca. 8.800","Höhenmeter"],["18","Liftfahrten"]],"fuss":["Details im Handout"],"fotos":[],"video":"media/S15.mp4","poster":"media/S15.jpg","dauer":12}],"nachweise":["Kartendaten © OpenStreetMap-Mitwirkende (ODbL) · Kartenstil OpenFreeMap / OpenMapTiles","Luftbild: Datenquelle basemap.at (CC BY 4.0), farblich bearbeitet · Gelände: © Mapterhorn (Land Salzburg, BEV, Copernicus)","Fotos: Bachgut, Wiesergut/Wieseralm, Genuss hoch 12, Der Schwarzacher, Der Jennerwein, Westgipfelhütte, Montana Royal, Saalbacher Hof, saalbach.com","Musik: „Electro Dreams“ – Arulo (Mixkit Stock Music Free License)"],"gruppenLink":"https://chat.whatsapp.com/F8ib2ckvQb8LYOufMdreO8"}</script>
+<script>
+(() => {
+  'use strict';
+  const D = JSON.parse(document.getElementById('daten').textContent);
+  const S = D.stopps;
+  const FOTO_MS = 3800, HALTE_MS = 7000;
+  const TAGE = { do: 'Donnerstag', fr: 'Freitag', sa: 'Samstag' };
+  const $ = (s) => document.querySelector(s);
+  const app = $('#app'), buehne = $('#buehne'), karte = $('#karte'), balken = $('#balken'), musik = $('#musik');
+  const flugebene = buehne.querySelector('.flugebene'), fotoebene = buehne.querySelector('.fotoebene');
+  const ICON_AN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+  const ICON_AUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 6 6"/><path d="m22 9-6 6"/></svg>';
+
+  let idx = 0, phase = 'start', fotoIdx = 0, rest = 0, pausiert = false, ton = true, gestartet = false, letzte = 0;
+  let flugStand = 0, flugStandSeit = 0;
+
+  S.forEach(() => { const i = document.createElement('i'); i.appendChild(document.createElement('b')); balken.appendChild(i); });
+  const flugMs = (s) => (s.video ? s.dauer * 1000 : 0);
+  const restMs = (s) => (s.fotos.length ? s.fotos.length * FOTO_MS : HALTE_MS);
+
+  // ---------- Videos: aktueller und naechster Stopp ----------
+  const vids = new Map();
+  function video(i) {
+    const s = S[i]; if (!s || !s.video) return null;
+    if (vids.has(i)) return vids.get(i);
+    const v = document.createElement('video');
+    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', '');
+    v.preload = 'auto'; v.poster = s.poster; v.src = s.video;
+    v.addEventListener('error', () => { v.dataset.fehler = '1'; });
+    flugebene.appendChild(v); vids.set(i, v); return v;
+  }
+  function pflegen(i) {
+    video(i); video(i + 1);
+    for (const [k, v] of vids) if (k < i - 1 || k > i + 1) { v.pause(); v.removeAttribute('src'); v.load(); v.remove(); vids.delete(k); }
+  }
+  function zumEnde(v) {
+    const setzen = () => { try { if (v.duration) v.currentTime = Math.max(0, v.duration - 0.05); } catch (e) { } };
+    v.pause(); if (v.readyState >= 1) setzen(); else v.addEventListener('loadedmetadata', setzen, { once: true });
+  }
+
+  // ---------- Karte ----------
+  function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function karteBauen(s) {
+    karte.classList.remove('rein'); karte.textContent = '';
+    if (s.kicker) karte.appendChild(el('div', 'kicker', s.kicker));
+    karte.appendChild(el('h2', '', s.titel));
+    if (s.zahlen) {
+      const z = el('div', 'zahlen');
+      s.zahlen.forEach(([w, t]) => { const d = el('div'); d.appendChild(el('b', '', w)); d.appendChild(el('span', '', t)); z.appendChild(d); });
+      karte.appendChild(z);
+    } else if (s.punkte.length) {
+      const ul = el('ul'); s.punkte.forEach(p => ul.appendChild(el('li', '', p))); karte.appendChild(ul);
+    }
+    const letzter = s === S[S.length - 1];
+    if (letzter) {
+      const b = el('div', 'dabei');
+      const a = el('a', 'knopf'); a.target = '_blank'; a.rel = 'noopener';
+      if (D.gruppenLink) { a.href = D.gruppenLink; a.textContent = 'Ich bin dabei'; a.appendChild(el('small', '', 'Tritt der Skimeeting-Community in WhatsApp bei')); a.addEventListener('click', (e) => { e.preventDefault(); willkommen(D.gruppenLink); }); }
+      else { a.href = 'https://wa.me/?text=' + encodeURIComponent('Ich bin beim Skimeeting 2027 dabei! 🎿 (4.–6. März, Saalbach Hinterglemm)'); a.textContent = 'Ich bin dabei'; a.appendChild(el('small', '', 'Öffnet WhatsApp: Runde auswählen und senden')); }
+      b.appendChild(a);
+      const nein = el('a', 'zweit', 'Diesmal nicht dabei'); nein.target = '_blank'; nein.rel = 'noopener';
+      nein.href = 'https://wa.me/?text=' + encodeURIComponent('Bin beim Skimeeting 2027 diesmal leider nicht dabei 😕 Viel Spaß euch!');
+      b.appendChild(nein);
+      if (s.fuss) { const f = el('div', 'fuss'); s.fuss.forEach(t => f.appendChild(el('span', '', t))); b.appendChild(f); }
+      const nochmal = el('button', 'zweit', 'Nochmal von vorne'); nochmal.type = 'button'; nochmal.addEventListener('click', () => zeigeStopp(0)); b.appendChild(nochmal);
+      b.appendChild(el('div', 'nachweise', D.nachweise.join(' · ')));
+      karte.appendChild(b);
+      app.dataset.letzter = '';
+    } else delete app.dataset.letzter;
+    void karte.offsetWidth; karte.classList.add('rein');
+  }
+
+  // ---------- Willkommens-Erlebnis ----------
+  function willkommen(link) {
+    const w = $('#willkommen'), los = $('#w-los');
+    los.href = link; w.hidden = false; w.classList.remove('bereit');
+    pause(true); app.classList.remove('pausiert');
+    const ruhig = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!ruhig) schneeStarten($('#schnee'));
+    setTimeout(() => w.classList.add('bereit'), ruhig ? 0 : 1600);
+    setTimeout(() => { try { window.location.href = link; } catch (e) { } }, ruhig ? 400 : 3800);
+  }
+  function schneeStarten(c) {
+    const ctx = c.getContext('2d'); const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const r = c.getBoundingClientRect(); c.width = r.width * dpr; c.height = r.height * dpr; ctx.scale(dpr, dpr);
+    const W = r.width, H = r.height, cx = W / 2, cy = H * 0.32;
+    const flocken = Array.from({ length: 140 }, (_, i) => {
+      const burst = i < 70, a = Math.random() * Math.PI * 2, v = 2 + Math.random() * 5;
+      return { x: burst ? cx : Math.random() * W, y: burst ? cy : -Math.random() * H, vx: burst ? Math.cos(a) * v : (Math.random() - .5) * .6,
+        vy: burst ? Math.sin(a) * v - 1.5 : .6 + Math.random() * 1.4, r: 1 + Math.random() * 2.6, rot: Math.random() < .12 };
+    });
+    const t0 = performance.now();
+    (function bild(t) {
+      ctx.clearRect(0, 0, W, H);
+      for (const f of flocken) {
+        f.vx *= .985; f.vy = f.vy * .985 + .035; f.x += f.vx; f.y += f.vy;
+        if (f.y > H + 10) { f.y = -10; f.x = Math.random() * W; f.vy = .6 + Math.random() * 1.2; f.vx = (Math.random() - .5) * .6; }
+        ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2); ctx.fillStyle = f.rot ? '#e92b2e' : 'rgba(243,246,249,.9)'; ctx.fill();
+      }
+      if (t - t0 < 9000 && !$('#willkommen').hidden) requestAnimationFrame(bild);
+    })(t0);
+  }
+
+  // ---------- Fotos ----------
+  function fotoZeigen(n) {
+    const s = S[idx], f = s.fotos[n]; if (!f) return;
+    fotoIdx = n;
+    const alt = [...fotoebene.querySelectorAll('.foto')];
+    const d = el('div', 'foto');
+    const pos = `${Math.round(f.fokus[0] * 100)}% ${Math.round(f.fokus[1] * 100)}%`;
+    d.style.backgroundImage = `url("${f.datei}")`; d.style.backgroundPosition = pos; d.style.transformOrigin = pos;
+    fotoebene.insertBefore(d, $('#ort'));
+    requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('an')));
+    alt.forEach(a => { a.classList.remove('an'); setTimeout(() => a.remove(), 900); });
+    $('#ort').textContent = f.ort; $('#fototitel').textContent = f.titel; $('#nachweis').textContent = f.nachweis;
+    $('#fotozahl').textContent = s.fotos.length > 1 ? `${n + 1} / ${s.fotos.length}` : '';
+    const nx = s.fotos[n + 1]; if (nx) { const im = new Image(); im.src = nx.datei; }
+  }
+
+  // ---------- Ablauf ----------
+  function setPhase(p) { phase = p; app.dataset.phase = p; }
+  function zeigeStopp(i, ab) {
+    idx = Math.max(0, Math.min(S.length - 1, i));
+    const s = S[idx];
+    pflegen(idx);
+    $('#tag').textContent = TAGE[s.tag] || '';
+    karteBauen(s);
+    fotoebene.querySelectorAll('.foto').forEach(f => f.remove());
+    s.fotos.slice(0, 2).forEach(f => { const im = new Image(); im.src = f.datei; });
+    for (const [k, v] of vids) { v.classList.toggle('an', k === idx); if (k !== idx) v.pause(); }
+    const v = vids.get(idx);
+    rest = 0; fotoIdx = 0;
+    if (v && ab !== 'ende') {
+      setPhase('flug'); flugStand = 0; flugStandSeit = performance.now();
+      try { v.currentTime = 0; } catch (e) { }
+      if (!pausiert) v.play().catch(() => setTimeout(() => { if (phase === 'flug' && vids.get(idx) === v && v.paused && !pausiert) restStarten(); }, 1500));
+    } else restStarten();
+  }
+  function restStarten() {
+    const s = S[idx], v = vids.get(idx);
+    if (v) zumEnde(v);
+    rest = 0; fotoIdx = 0;
+    setPhase(s.fotos.length ? 'fotos' : 'halten');
+    if (s.fotos.length) fotoZeigen(0);
+  }
+  function weiter() {
+    if (!gestartet) return;
+    const s = S[idx];
+    if (phase === 'flug') { restStarten(); return; }
+    if (phase === 'fotos' && fotoIdx < s.fotos.length - 1) { rest = (fotoIdx + 1) * FOTO_MS; fotoZeigen(fotoIdx + 1); return; }
+    if (idx < S.length - 1) zeigeStopp(idx + 1);
+  }
+  function zurueck() {
+    if (!gestartet) return;
+    if (phase === 'fotos' && fotoIdx > 0) { rest = (fotoIdx - 1) * FOTO_MS; fotoZeigen(fotoIdx - 1); return; }
+    if (idx > 0) zeigeStopp(idx - 1, 'ende'); else zeigeStopp(0);
+  }
+  function pause(an) {
+    pausiert = an; app.classList.toggle('pausiert', an);
+    const v = vids.get(idx);
+    if (v && phase === 'flug') { if (an) v.pause(); else v.play().catch(() => { }); }
+    if (ton) { if (an) musik.pause(); else musik.play().catch(() => { }); }
+  }
+  function balkenSetzen() {
+    const s = S[idx]; if (!s) return;
+    const v = vids.get(idx);
+    let teil = 0;
+    if (gestartet) {
+      const fl = flugMs(s), r = restMs(s);
+      const flug = phase === 'flug' ? (v && v.duration ? v.currentTime * 1000 : 0) : fl;
+      const rr = phase === 'flug' ? 0 : Math.min(rest, r);
+      teil = Math.min(1, (flug + rr) / (fl + r));
+    }
+    [...balken.children].forEach((i, k) => { i.firstChild.style.width = (k < idx ? 100 : k > idx ? 0 : teil * 100) + '%'; });
+  }
+  function schleife(t) {
+    const dt = letzte ? Math.min(120, t - letzte) : 0; letzte = t;
+    if (gestartet && !pausiert && !document.hidden) {
+      const s = S[idx];
+      if (phase === 'flug') {
+        const v = vids.get(idx);
+        if (!v || v.dataset.fehler || v.ended || (v.duration && v.currentTime >= v.duration - 0.08)) restStarten();
+        else if (v.currentTime !== flugStand) { flugStand = v.currentTime; flugStandSeit = t; }
+        else if (t - flugStandSeit > 12000) restStarten(); // haengt das Laden, geht es mit den Fotos weiter
+      } else if (phase === 'fotos' || phase === 'halten') {
+        rest += dt;
+        if (phase === 'fotos') { const soll = Math.min(s.fotos.length - 1, Math.floor(rest / FOTO_MS)); if (soll !== fotoIdx) fotoZeigen(soll); }
+        if (rest >= restMs(s)) { if (idx < S.length - 1) zeigeStopp(idx + 1); else rest = restMs(s); }
+      }
+    }
+    balkenSetzen();
+    requestAnimationFrame(schleife);
+  }
+
+  // ---------- Ton ----------
+  function tonSetzen() {
+    const b = $('#ton'); b.innerHTML = ton ? ICON_AN : ICON_AUS; b.setAttribute('aria-pressed', String(ton)); b.setAttribute('aria-label', ton ? 'Ton aus' : 'Ton an');
+    if (ton && gestartet && !pausiert) { musik.volume = 0.6; musik.play().catch(() => { ton = false; tonSetzen(); }); } else musik.pause();
+  }
+  $('#ton').addEventListener('click', (e) => { e.stopPropagation(); ton = !ton; tonSetzen(); });
+
+  // ---------- Start ----------
+  function starten(mitTon) {
+    ton = mitTon; gestartet = true; $('#start').hidden = true;
+    if (ton) { musik.preload = 'auto'; }
+    tonSetzen(); zeigeStopp(0);
+  }
+  $('#los').addEventListener('click', (e) => { e.stopPropagation(); starten(true); });
+  $('#leise').addEventListener('click', (e) => { e.stopPropagation(); starten(false); });
+
+  // ---------- Bedienung: tippen, halten, wischen, Tasten ----------
+  let downX = 0, downY = 0, haltTimer = null, gehalten = false, aktiv = false;
+  const ignorieren = (e) => !!e.target.closest('a, button, #start, #willkommen');
+  app.addEventListener('pointerdown', (e) => {
+    if (ignorieren(e) || !gestartet) return;
+    aktiv = true; downX = e.clientX; downY = e.clientY; gehalten = false;
+    clearTimeout(haltTimer); haltTimer = setTimeout(() => { gehalten = true; pause(true); }, 260);
+  });
+  app.addEventListener('pointerup', (e) => {
+    if (!aktiv) return; aktiv = false; clearTimeout(haltTimer);
+    if (gehalten) { pause(false); return; }
+    const dx = e.clientX - downX, dy = e.clientY - downY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) { if (idx < S.length - 1) zeigeStopp(idx + 1); } else if (idx > 0) zeigeStopp(idx - 1, 'ende'); return; }
+    if (Math.abs(dy) > 40) return;
+    const r = app.getBoundingClientRect();
+    if (e.clientX - r.left < r.width * 0.33) zurueck(); else weiter();
+  });
+  app.addEventListener('pointercancel', () => { aktiv = false; clearTimeout(haltTimer); if (gehalten) pause(false); });
+  app.addEventListener('contextmenu', (e) => e.preventDefault());
+  addEventListener('keydown', (e) => {
+    if (!gestartet) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); starten(true); } return; }
+    if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); weiter(); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); zurueck(); }
+    else if (e.key === 'p' || e.key === 'k') pause(!pausiert);
+    else if (e.key === 'm') { ton = !ton; tonSetzen(); }
+  });
+  document.addEventListener('visibilitychange', () => {
+    const v = vids.get(idx);
+    if (document.hidden) { musik.pause(); if (v) v.pause(); }
+    else if (gestartet && !pausiert) { if (ton) musik.play().catch(() => { }); if (v && phase === 'flug') v.play().catch(() => { }); }
+  });
+
+  tonSetzen();
+  karteBauen(S[0]); $('#tag').textContent = '';
+  requestAnimationFrame(schleife);
+})();
+</script>
+</body></html>
