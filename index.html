@@ -49,8 +49,8 @@ body { margin: 0; background: var(--tief); color: var(--schnee); font-family: va
 .ort { position: absolute; left: 14px; top: 12px; z-index: 2; font: 800 24px/1 var(--f-titel); text-transform: uppercase; letter-spacing: .02em; padding-bottom: 5px; border-bottom: 3px solid var(--rot); text-shadow: 0 2px 10px rgba(0, 0, 0, .55); }
 .unten { position: absolute; left: 14px; right: 14px; bottom: 26px; z-index: 2; display: flex; align-items: flex-end; gap: 10px; }
 .unten .ft { flex: 1; min-width: 0; font: 600 16px/1.25 var(--f-text); }
-.unten .fz { font: 700 15px/1 var(--f-label); letter-spacing: .1em; color: var(--leise); font-variant-numeric: tabular-nums; }
-.nachweis { position: absolute; left: 14px; right: 14px; bottom: 8px; z-index: 2; font: 400 11px/1.2 var(--f-text); color: rgba(243, 246, 249, .85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 1px 4px rgba(0, 0, 0, .7); }
+.unten .fz { font: 700 15px/1 var(--f-label); letter-spacing: .1em; color: var(--schnee); text-shadow: 0 1px 4px rgba(0, 0, 0, .7); font-variant-numeric: tabular-nums; }
+.nachweis { position: absolute; left: 14px; right: 14px; bottom: 8px; z-index: 2; font: 400 11px/1.2 var(--f-text); color: var(--schnee); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 1px 4px rgba(0, 0, 0, .7); }
 .ort { max-width: calc(100% - 28px); }
 .pausezeichen { position: absolute; inset: 0; display: grid; place-items: center; z-index: 3; opacity: 0; transition: opacity .2s; pointer-events: none; }
 .pausezeichen span { font: 700 15px/1 var(--f-label); letter-spacing: .16em; text-transform: uppercase; background: rgba(7, 18, 26, .72); padding: 10px 14px; border-radius: 999px; }
@@ -80,7 +80,7 @@ a.zweit { display: block; text-align: center; text-decoration: none; }
 .nachweise { font: 400 11px/1.4 var(--f-text); color: var(--leise); }
 #app[data-letzter] .buehne { width: min(100%, 30svh); }
 #app[data-letzter] .zahlen { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
-#app[data-letzter] .zahlen div { padding: 7px 8px; }
+#app[data-letzter] .zahlen div { padding: 9px 10px; }
 #app[data-letzter] .zahlen b { font-size: clamp(18px, 5.4vw, 22px); white-space: nowrap; }
 #app[data-letzter] .zahlen span { font-size: 11px; letter-spacing: .06em; }
 #app[data-letzter] #karte { overflow-y: auto; }
